@@ -28,10 +28,9 @@ export default function LoginPage() {
         setError(data.error || 'Error al iniciar sesión');
         return;
       }
-      Cookies.set('token', data.token, { expires: 1 });
+      Cookies.set('token', data.token, { expires: 1, path: '/' });
       localStorage.setItem('user', JSON.stringify(data.user));
-      router.push('/');
-      router.refresh();
+      window.location.href = '/';
     } catch {
       setError('Error de conexión con el servidor');
     } finally {
